@@ -58,15 +58,11 @@ android {
 
 dependencies {
 
+    implementation(project(Module.LIBRARY_CORE))
+    implementation(project(Module.LIBRARY_WIDGET))
+
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
-    implementation(Dependencies.AndroidX.ACTIVITY_COMPOSE)
-
-    implementation(platform(Dependencies.AndroidX.COMPOSE_BOM))
-    implementation(Dependencies.AndroidX.COMPOSE_UI)
-    implementation(Dependencies.AndroidX.COMPOSE_UI_GRAPHIC)
-    implementation(Dependencies.AndroidX.COMPOSE_UI_TOOLING_PREVIEW)
-    implementation(Dependencies.AndroidX.COMPOSE_MATERIAL)
 
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation(Dependencies.AndroidTest.JUNIT)

@@ -14,6 +14,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.github.fajaragungpramana.pokelib.widget.style.Pink40
+import com.github.fajaragungpramana.pokelib.widget.style.Pink80
+import com.github.fajaragungpramana.pokelib.widget.style.Purple40
+import com.github.fajaragungpramana.pokelib.widget.style.Purple80
+import com.github.fajaragungpramana.pokelib.widget.style.PurpleGrey40
+import com.github.fajaragungpramana.pokelib.widget.style.PurpleGrey80
+import com.github.fajaragungpramana.pokelib.widget.style.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
