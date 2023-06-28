@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PokeLib</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
