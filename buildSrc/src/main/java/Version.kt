@@ -9,4 +9,6 @@ object Version {
     const val APP_CODE = 1
     const val APP_NAME = "1.0.0"
 
+    const val HILT = "2.46.1"
+
 }

@@ -11,11 +11,12 @@ object Dependencies {
         const val LIFECYCLE_RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
         const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:1.7.2"
 
-        const val COMPOSE_BOM = "androidx.compose:compose-bom:2022.10.00"
+        const val COMPOSE_BOM = "androidx.compose:compose-bom:2023.05.01"
         const val COMPOSE_UI = "androidx.compose.ui:ui"
         const val COMPOSE_UI_GRAPHIC = "androidx.compose.ui:ui-graphics"
         const val COMPOSE_UI_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview"
         const val COMPOSE_MATERIAL = "androidx.compose.material3:material3"
+        const val COMPOSE_HILT = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
     object Debug {
@@ -24,6 +25,9 @@ object Dependencies {
     }
 
     object Google {
+        const val HILT = "com.google.dagger:hilt-android:${Version.HILT}"
+        const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Version.HILT}"
+
         const val ACCOMPANIST_SWIPEREFRESH = "com.google.accompanist:accompanist-swiperefresh:0.30.1"
     }
 

@@ -2,6 +2,7 @@ plugins {
     id(Plugin.APPLICATION)
     id(Plugin.KOTLIN_ANDROID)
     id(Plugin.KOTLIN_KAPT)
+    id(Plugin.HILT)
 }
 
 android {
@@ -63,7 +64,10 @@ dependencies {
 
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
+    implementation(Dependencies.AndroidX.COMPOSE_HILT)
 
+    implementation(Dependencies.Google.HILT)
+    kapt(Dependencies.Google.HILT_COMPILER)
     implementation(Dependencies.Google.ACCOMPANIST_SWIPEREFRESH)
 
     testImplementation(Dependencies.Test.JUNIT)
