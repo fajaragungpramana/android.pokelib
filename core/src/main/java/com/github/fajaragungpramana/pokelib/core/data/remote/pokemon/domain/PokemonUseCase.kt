@@ -6,5 +6,5 @@ import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.mode
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonUseCase {
-    suspend fun getListPokemon(request: PokemonRequest): AppResult<Flow<List<Pokemon>>>
+    suspend fun getListPokemon(request: PokemonRequest): Flow<AppResult<List<Pokemon>>>
 }
