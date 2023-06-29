@@ -31,6 +31,12 @@ object Dependencies {
         const val ACCOMPANIST_SWIPEREFRESH = "com.google.accompanist:accompanist-swiperefresh:0.30.1"
     }
 
+    object SquareUp {
+        const val Retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+        const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:2.9.0"
+        const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:4.9.3"
+    }
+
     object Test {
         const val JUNIT = "junit:junit:4.13.2"
     }

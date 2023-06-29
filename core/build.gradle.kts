@@ -2,6 +2,7 @@ plugins {
     id(Plugin.LIBRARY)
     id(Plugin.KOTLIN_ANDROID)
     id(Plugin.KOTLIN_KAPT)
+    id(Plugin.HILT)
 }
 
 android {
@@ -16,13 +17,23 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
         }
+
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
+        }
+    }
+    @Suppress("UnstableApiUsage")
+    buildFeatures {
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -35,6 +46,12 @@ android {
 
 dependencies {
 
+    implementation(Dependencies.Google.HILT)
+    kapt(Dependencies.Google.HILT_COMPILER)
+
+    api(Dependencies.SquareUp.Retrofit)
+    implementation(Dependencies.SquareUp.CONVERTER_GSON)
+    implementation(Dependencies.SquareUp.LOGGING_INTERCEPTOR)
 
 }
 

@@ -12,7 +12,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
