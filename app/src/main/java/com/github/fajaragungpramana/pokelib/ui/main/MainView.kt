@@ -12,12 +12,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.fajaragungpramana.pokelib.R
@@ -27,47 +31,46 @@ import com.github.fajaragungpramana.pokelib.widget.component.TextFieldRoundedWit
 object MainView {
 
     @Composable
-    fun ContentView() {
+    inline fun HeaderView(
+        onSearchValueChanged: (String) -> Unit
+    ) {
 
-        Column(
+        val searchFieldValue = remember { mutableStateOf(TextFieldValue()) }
+        onSearchValueChanged(searchFieldValue.value.text)
+
+        Row(
             modifier = Modifier
-                .systemBarsPadding()
-                .fillMaxSize()
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp)
+                .wrapContentHeight(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Row(
+            TextFieldRoundedWithStartIcon(
+                modifier = Modifier.weight(1f),
+                iconId = R.drawable.ic_search,
+                placeHolderText = stringResource(id = R.string.search_pokemon_you_here),
+                value = searchFieldValue
+            )
+
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp)
-                    .wrapContentHeight(),
-                verticalAlignment = Alignment.CenterVertically
+                    .wrapContentSize()
+                    .padding(start = 16.dp)
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) { }
             ) {
-
-                TextFieldRoundedWithStartIcon(
-                    modifier = Modifier.weight(1f),
-                    iconId = R.drawable.ic_search,
-                    placeHolderText = stringResource(id = R.string.search_pokemon_you_here)
+                Image(
+                    painter = painterResource(id = R.drawable.ic_favorite),
+                    contentDescription = null
                 )
-
-                Box(
-                    modifier = Modifier
-                        .wrapContentSize()
-                        .padding(start = 16.dp)
-                        .clickable(
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() }
-                        ) { }
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_favorite),
-                        contentDescription = null
-                    )
-                }
-
             }
 
         }
+
     }
 
 }
@@ -76,6 +79,24 @@ object MainView {
 @Composable
 fun MainActivity_Preview() {
     PokeLibTheme(dynamicColor = false) {
-        MainView.ContentView()
+
+        Surface(
+            modifier = Modifier
+                .systemBarsPadding()
+                .fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+
+                MainView.HeaderView {}
+
+            }
+
+        }
+
     }
 }

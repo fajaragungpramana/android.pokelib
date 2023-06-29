@@ -23,6 +23,10 @@ object Dependencies {
         const val COMPOSE_UI_TEST_MANIFEST = "androidx.compose.ui:ui-test-manifest"
     }
 
+    object Google {
+        const val ACCOMPANIST_SWIPEREFRESH = "com.google.accompanist:accompanist-swiperefresh:0.30.1"
+    }
+
     object Test {
         const val JUNIT = "junit:junit:4.13.2"
     }

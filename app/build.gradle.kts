@@ -64,6 +64,8 @@ dependencies {
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
 
+    implementation(Dependencies.Google.ACCOMPANIST_SWIPEREFRESH)
+
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation(Dependencies.AndroidTest.JUNIT)
     androidTestImplementation(Dependencies.AndroidTest.ESPRESSO_CORE)

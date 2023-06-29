@@ -13,8 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -27,14 +26,14 @@ import com.github.fajaragungpramana.pokelib.widget.style.Gray40
 fun TextFieldRoundedWithStartIcon(
     modifier: Modifier,
     @DrawableRes iconId: Int,
-    placeHolderText: String
+    placeHolderText: String,
+    value: MutableState<TextFieldValue>
 ) {
-    val searchValue = remember { mutableStateOf(TextFieldValue()) }
 
     BasicTextField(
         modifier = modifier,
-        value = searchValue.value,
-        onValueChange = { searchValue.value = it },
+        value = value.value,
+        onValueChange = { value.value = it },
         singleLine = true,
         decorationBox = { innerTextField ->
             Row(
@@ -56,7 +55,7 @@ fun TextFieldRoundedWithStartIcon(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.CenterStart
                 ) {
-                    if (searchValue.value.text.isEmpty())
+                    if (value.value.text.isEmpty())
                         Text(
                             text = placeHolderText,
                             color = Gray40
