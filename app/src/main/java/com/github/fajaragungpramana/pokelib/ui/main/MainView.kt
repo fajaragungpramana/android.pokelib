@@ -51,6 +51,7 @@ import coil.compose.SubcomposeAsyncImage
 import com.github.fajaragungpramana.pokelib.R
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.PokemonRequest
+import com.github.fajaragungpramana.pokelib.ui.RouteView
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 import com.github.fajaragungpramana.pokelib.widget.component.TextFieldRoundedWithStartIcon
 
@@ -77,7 +78,7 @@ object MainView {
                 PokemonView(
                     listPokemon = listPokemon.value,
                     onSelectedItem = {
-                        navController?.navigate("detail")
+                        navController?.navigate(RouteView.DETAIL.name)
                     }
                 )
             else

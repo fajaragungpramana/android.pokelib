@@ -33,11 +33,11 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "main") {
-                        composable("main") {
+                    NavHost(navController = navController, startDestination = RouteView.MAIN.name) {
+                        composable(RouteView.MAIN.name) {
                             MainView.ContentView(navController = navController)
                         }
-                        composable("detail") {
+                        composable(RouteView.DETAIL.name) {
                             DetailView.ContentView(navController = navController)
                         }
                     }
