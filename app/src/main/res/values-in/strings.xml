@@ -2,5 +2,5 @@
 <resources>
     <string name="app_name">PokeLib</string>
     <string name="title_favorite">Favorite</string>
-    <string name="search_pokemon_you_here">Cari pokemon kamu di sini…</string>
+    <string name="search_pokemon_here">Cari pokemon di sini…</string>
 </resources>

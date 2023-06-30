@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.PokemonRequest
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +22,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mViewModel.getListPokemon(PokemonRequest())
 
         setContent {
             PokeLibTheme(dynamicColor = false) {
@@ -39,6 +43,11 @@ class MainActivity : ComponentActivity() {
                         MainView.HeaderView {
 
                         }
+
+                        val loadingListPokemon = mViewModel.stateLoadingListPokemon.collectAsState()
+                        val listPokemon = mViewModel.stateSuccessListPokemon.collectAsState()
+                        if (listPokemon.value.isNotEmpty())
+                            MainView.PokemonView(listPokemon = listPokemon.value)
 
                     }
 
