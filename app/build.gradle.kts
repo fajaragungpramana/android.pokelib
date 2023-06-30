@@ -65,6 +65,7 @@ dependencies {
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
     implementation(Dependencies.AndroidX.COMPOSE_HILT)
+    implementation(Dependencies.AndroidX.NAVIGATION_COMPOSE)
 
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)

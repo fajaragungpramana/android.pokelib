@@ -29,6 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -43,14 +44,47 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.github.fajaragungpramana.pokelib.R
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
+import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.PokemonRequest
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 import com.github.fajaragungpramana.pokelib.widget.component.TextFieldRoundedWithStartIcon
 
 object MainView {
+
+    @Composable
+    fun ContentView(navController: NavController?) {
+        val viewModel: MainViewModel = hiltViewModel()
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+
+            HeaderView {
+
+            }
+
+            val loadingListPokemon = viewModel.stateLoadingListPokemon.collectAsState()
+            if (loadingListPokemon.value) PokemonShimmerView()
+
+            val listPokemon = viewModel.stateSuccessListPokemon.collectAsState()
+            if (listPokemon.value.isNotEmpty())
+                PokemonView(
+                    listPokemon = listPokemon.value,
+                    onSelectedItem = {
+                        navController?.navigate("detail")
+                    }
+                )
+            else
+                viewModel.getListPokemon(PokemonRequest())
+
+        }
+    }
 
     @Composable
     inline fun HeaderView(
@@ -98,7 +132,10 @@ object MainView {
     }
 
     @Composable
-    fun PokemonView(listPokemon: List<Pokemon>) {
+    inline fun PokemonView(
+        listPokemon: List<Pokemon>,
+        crossinline onSelectedItem: (Pokemon) -> Unit
+    ) {
 
         LazyVerticalGrid(
             modifier = Modifier
@@ -115,7 +152,7 @@ object MainView {
                             .padding(8.dp)
                             .fillMaxWidth()
                             .height(200.dp)
-                            .clickable { },
+                            .clickable { onSelectedItem(pokemon) },
                         shape = RoundedCornerShape(8.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
@@ -216,7 +253,7 @@ object MainView {
 
 @Preview(showBackground = true)
 @Composable
-fun MainActivity_Preview() {
+fun Main_Preview() {
     PokeLibTheme(dynamicColor = false) {
 
         Surface(
@@ -226,14 +263,7 @@ fun MainActivity_Preview() {
             color = MaterialTheme.colorScheme.background
         ) {
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-
-                MainView.HeaderView {}
-
-            }
+            MainView.ContentView(navController = null)
 
         }
 

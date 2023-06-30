@@ -12,6 +12,7 @@ object Dependencies {
         const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:1.7.2"
 
         const val COMPOSE_HILT = "androidx.hilt:hilt-navigation-compose:1.0.0"
+        const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:2.6.0"
 
         const val COMPOSE_BOM = "androidx.compose:compose-bom:2023.05.01"
         const val COMPOSE_UI = "androidx.compose.ui:ui"

@@ -1,29 +1,26 @@
-package com.github.fajaragungpramana.pokelib.ui.main
+package com.github.fajaragungpramana.pokelib.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.PokemonRequest
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.github.fajaragungpramana.pokelib.ui.detail.DetailView
+import com.github.fajaragungpramana.pokelib.ui.main.MainView
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val mViewModel by viewModels<MainViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mViewModel.getListPokemon(PokemonRequest())
 
         setContent {
             PokeLibTheme(dynamicColor = false) {
@@ -35,22 +32,14 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                    ) {
-
-                        MainView.HeaderView {
-
+                    val navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = "main") {
+                        composable("main") {
+                            MainView.ContentView(navController = navController)
                         }
-
-                        val loadingListPokemon = mViewModel.stateLoadingListPokemon.collectAsState()
-                        if (loadingListPokemon.value) MainView.PokemonShimmerView()
-
-                        val listPokemon = mViewModel.stateSuccessListPokemon.collectAsState()
-                        if (listPokemon.value.isNotEmpty())
-                            MainView.PokemonView(listPokemon = listPokemon.value)
-
+                        composable("detail") {
+                            DetailView.ContentView(navController = navController)
+                        }
                     }
 
                 }
