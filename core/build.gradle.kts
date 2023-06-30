@@ -50,7 +50,7 @@ dependencies {
     kapt(Dependencies.Google.HILT_COMPILER)
 
     api(Dependencies.SquareUp.Retrofit)
-    implementation(Dependencies.SquareUp.CONVERTER_GSON)
+    api(Dependencies.SquareUp.CONVERTER_GSON)
     implementation(Dependencies.SquareUp.LOGGING_INTERCEPTOR)
 
 }

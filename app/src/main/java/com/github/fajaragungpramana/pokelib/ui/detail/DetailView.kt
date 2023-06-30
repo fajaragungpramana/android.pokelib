@@ -18,13 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 
 object DetailView {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ContentView(navController: NavController?) {
+    fun ContentView(navController: NavController?, pokemon: Pokemon?) {
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -61,7 +62,7 @@ fun Detail_Preview() {
             color = MaterialTheme.colorScheme.background
         ) {
 
-            DetailView.ContentView(navController = null)
+            DetailView.ContentView(navController = null, null)
 
         }
 

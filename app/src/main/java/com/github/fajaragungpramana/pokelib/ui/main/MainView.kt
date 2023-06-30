@@ -54,6 +54,7 @@ import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.Pok
 import com.github.fajaragungpramana.pokelib.ui.RouteView
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 import com.github.fajaragungpramana.pokelib.widget.component.TextFieldRoundedWithStartIcon
+import com.google.gson.Gson
 
 object MainView {
 
@@ -78,7 +79,8 @@ object MainView {
                 PokemonView(
                     listPokemon = listPokemon.value,
                     onSelectedItem = {
-                        navController?.navigate(RouteView.DETAIL.name)
+                        val pokemon = Gson().toJson(it)
+                        navController?.navigate(RouteView.Detail(pokemon = pokemon).route)
                     }
                 )
             else
