@@ -45,6 +45,8 @@ class MainActivity : ComponentActivity() {
                         }
 
                         val loadingListPokemon = mViewModel.stateLoadingListPokemon.collectAsState()
+                        if (loadingListPokemon.value) MainView.PokemonShimmerView()
+
                         val listPokemon = mViewModel.stateSuccessListPokemon.collectAsState()
                         if (listPokemon.value.isNotEmpty())
                             MainView.PokemonView(listPokemon = listPokemon.value)
