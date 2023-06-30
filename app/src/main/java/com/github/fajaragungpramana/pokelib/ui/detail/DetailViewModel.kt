@@ -18,28 +18,21 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(private val mPokemonUseCase: PokemonUseCase) :
     ViewModel(), DetailEvent {
 
-    private val _stateLoadingPokemonSpecies = MutableStateFlow(false)
-    val stateLoadingPokemonSpecies: StateFlow<Boolean>
-        get() = _stateLoadingPokemonSpecies.asStateFlow()
-
     private val _stateSuccessPokemonSpecies = MutableStateFlow(PokemonSpecies())
     val stateSuccessPokemonSpecies: StateFlow<PokemonSpecies>
         get() = _stateSuccessPokemonSpecies.asStateFlow()
 
-    override fun getPokemonSpecies(id: Long): Job = viewModelScope.launch {
+    override fun getPokemonSpecies(id: Long?): Job = viewModelScope.launch {
         mPokemonUseCase.getPokemonSpecies(id).collectLatest { result ->
             result.onCompleteListener(
                 onLoading = {
-                    _stateLoadingPokemonSpecies.value = it
                 },
                 onSuccess = {
                     _stateSuccessPokemonSpecies.value = it ?: PokemonSpecies()
                 },
                 onFailure = {
-
                 },
                 onError = {
-
                 }
             )
         }

@@ -24,6 +24,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.github.fajaragungpramana.pokelib.R
@@ -44,6 +47,13 @@ object DetailView {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun ContentView(navController: NavController?, pokemon: Pokemon?) {
+        val viewModel: DetailViewModel = hiltViewModel()
+        LaunchedEffect(Unit) {
+            viewModel.getPokemonSpecies(pokemon?.id)
+        }
+
+        val pokemonSpecies = viewModel.stateSuccessPokemonSpecies.collectAsState()
+
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -145,7 +155,7 @@ object DetailView {
                     }
 
                     Text(
-                        text = "About",
+                        text = pokemonSpecies.value.about.orEmpty(),
                         textAlign = TextAlign.Center
                     )
 

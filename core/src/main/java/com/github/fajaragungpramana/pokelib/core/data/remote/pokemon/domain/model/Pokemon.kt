@@ -3,6 +3,7 @@ package com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.mod
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.response.PokemonEntity
 
 data class Pokemon(
+    var id: Long? = null,
     var name: String? = null,
     var image: String? = null,
     var height: Int? = null,
@@ -20,6 +21,7 @@ data class Pokemon(
                 val pokemonEntity = data[i]
 
                 val pokemon = Pokemon(
+                    id = pokemonEntity.id,
                     name = pokemonEntity.name,
                     image = pokemonEntity.sprites?.other?.officialArtwork?.frontDefault,
                     height = pokemonEntity.height,
