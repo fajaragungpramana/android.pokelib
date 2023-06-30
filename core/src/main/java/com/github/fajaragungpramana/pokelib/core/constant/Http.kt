@@ -4,6 +4,7 @@ object Http {
 
     object Route {
         const val POKEMON = "pokemon"
+        const val POKEMON_SPECIES = "pokemon-species"
     }
 
     object Param {
