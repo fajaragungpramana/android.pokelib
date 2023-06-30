@@ -49,4 +49,6 @@ dependencies {
     implementation(Dependencies.AndroidX.COMPOSE_UI_TOOLING_PREVIEW)
     api(Dependencies.AndroidX.COMPOSE_MATERIAL)
 
+    api(Dependencies.Widget.COIL_COMPOSE)
+
 }
