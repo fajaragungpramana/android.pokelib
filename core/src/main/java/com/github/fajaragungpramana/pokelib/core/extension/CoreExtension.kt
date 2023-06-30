@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import retrofit2.Response
 
 inline fun <T> AppResult<T>.onCompleteListener(
     onLoading: (Boolean) -> Unit,
@@ -24,6 +25,12 @@ inline fun <T> AppResult<T>.onCompleteListener(
         is AppResult.OnError -> onError(this.throwable)
     }
 }
+
+fun <T> Response<T>.asResult(): AppResult<T> =
+    if (this.isSuccessful)
+        AppResult.OnSuccess(this.body())
+    else
+        AppResult.OnFailure(this.code())
 
 fun <T> Flow<AppResult<T>>.resultFlow(): Flow<AppResult<T>> =
     try {

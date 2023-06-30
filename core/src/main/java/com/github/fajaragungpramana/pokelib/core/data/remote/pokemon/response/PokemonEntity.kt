@@ -14,6 +14,15 @@ data class PokemonEntity(
     val url: String? = null,
 
     @SerializedName("sprites")
-    val sprites: SpriteEntity? = null
+    val sprites: SpriteEntity? = null,
+
+    @SerializedName("stats")
+    val stats: List<StatEntity>? = null,
+
+    @SerializedName("height")
+    val height: Int? = null,
+
+    @SerializedName("weight")
+    val weight: Int? = null
 
 )
