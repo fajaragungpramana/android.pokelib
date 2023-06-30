@@ -17,5 +17,6 @@ rootProject.name = "PokeLib"
 include(
     ":app",
     ":core",
+    ":widget",
     ":favorite"
 )
