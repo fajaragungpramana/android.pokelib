@@ -2,6 +2,7 @@ plugins {
     id(Plugin.APPLICATION)
     id(Plugin.KOTLIN_ANDROID)
     id(Plugin.KOTLIN_KAPT)
+    id(Plugin.HILT)
 }
 
 android {
@@ -22,7 +23,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -31,18 +32,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     @Suppress("UnstableApiUsage")
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.6"
     }
     packaging {
         resources {
@@ -58,15 +59,17 @@ android {
 
 dependencies {
 
+    implementation(project(Module.LIBRARY_CORE))
+    implementation(project(Module.LIBRARY_WIDGET))
+
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
-    implementation(Dependencies.AndroidX.ACTIVITY_COMPOSE)
+    implementation(Dependencies.AndroidX.COMPOSE_HILT)
+    implementation(Dependencies.AndroidX.NAVIGATION_COMPOSE)
 
-    implementation(platform(Dependencies.AndroidX.COMPOSE_BOM))
-    implementation(Dependencies.AndroidX.COMPOSE_UI)
-    implementation(Dependencies.AndroidX.COMPOSE_UI_GRAPHIC)
-    implementation(Dependencies.AndroidX.COMPOSE_UI_TOOLING_PREVIEW)
-    implementation(Dependencies.AndroidX.COMPOSE_MATERIAL)
+    implementation(Dependencies.Google.HILT)
+    kapt(Dependencies.Google.HILT_COMPILER)
+    implementation(Dependencies.Google.ACCOMPANIST_SWIPEREFRESH)
 
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation(Dependencies.AndroidTest.JUNIT)
