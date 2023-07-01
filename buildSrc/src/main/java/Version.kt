@@ -10,5 +10,6 @@ object Version {
     const val APP_NAME = "1.0.0"
 
     const val HILT = "2.46.1"
+    const val ROOM = "2.5.2"
 
 }

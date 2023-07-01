@@ -19,6 +19,9 @@ object Dependencies {
         const val COMPOSE_UI_GRAPHIC = "androidx.compose.ui:ui-graphics"
         const val COMPOSE_UI_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview"
         const val COMPOSE_MATERIAL = "androidx.compose.material3:material3"
+
+        const val ROOM = "androidx.room:room-runtime:${Version.ROOM}"
+        const val ROOM_COMPILER = "androidx.room:room-compiler:${Version.ROOM}"
     }
 
     object Debug {

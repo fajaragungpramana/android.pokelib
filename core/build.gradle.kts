@@ -53,6 +53,9 @@ dependencies {
     api(Dependencies.SquareUp.CONVERTER_GSON)
     implementation(Dependencies.SquareUp.LOGGING_INTERCEPTOR)
 
+    implementation(Dependencies.AndroidX.ROOM)
+    kapt(Dependencies.AndroidX.ROOM_COMPILER)
+
 }
 
 kapt {
