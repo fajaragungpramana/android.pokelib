@@ -37,8 +37,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.github.fajaragungpramana.pokelib.R
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Stat
+import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.request.PokemonFavoriteRequest
+import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.request.StatFavoriteRequest
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Stat
 import com.github.fajaragungpramana.pokelib.extension.asDigit
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 
@@ -71,7 +73,30 @@ object DetailView {
                         }
                     },
                     actions = {
-                        IconButton(onClick = { }) {
+                        IconButton(onClick = {
+
+                            val listStatRequest = arrayListOf<StatFavoriteRequest>()
+                            pokemon?.listStat?.forEach {
+                                listStatRequest.add(
+                                    StatFavoriteRequest(
+                                        value = it.value,
+                                        name = it.name
+                                    )
+                                )
+                            }
+                            viewModel.setPokemonFavorite(
+                                PokemonFavoriteRequest(
+                                    globalId = pokemon?.id,
+                                    name = pokemon?.name,
+                                    image = pokemon?.image,
+                                    about = pokemon?.about,
+                                    height = pokemon?.height,
+                                    weight = pokemon?.weight,
+                                    listStat = listStatRequest
+                                )
+                            )
+
+                        }) {
                             AsyncImage(
                                 modifier = Modifier
                                     .width(24.dp)

@@ -52,7 +52,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.github.fajaragungpramana.pokelib.R
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.PokemonRequest
 import com.github.fajaragungpramana.pokelib.ui.RouteView
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme

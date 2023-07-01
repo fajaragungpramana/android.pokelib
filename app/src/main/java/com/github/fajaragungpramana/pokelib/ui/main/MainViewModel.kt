@@ -2,8 +2,8 @@ package com.github.fajaragungpramana.pokelib.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.PokemonUseCase
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.PokemonUseCase
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.request.PokemonRequest
 import com.github.fajaragungpramana.pokelib.core.extension.onCompleteListener
 import dagger.hilt.android.lifecycle.HiltViewModel
