@@ -1,11 +1,13 @@
-package com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model
+package com.github.fajaragungpramana.pokelib.core.domain.pokemon.model
 
+import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.response.PokemonFavoriteEntity
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.response.PokemonEntity
 
 data class Pokemon(
     var id: Long? = null,
     var name: String? = null,
     var image: String? = null,
+    var about: String? = null,
     var height: Int? = null,
     var weight: Int? = null,
     var listStat: List<Stat>? = null
@@ -47,6 +49,34 @@ data class Pokemon(
             }
 
             return listPokemon
+        }
+
+        fun mapToObject(data: PokemonFavoriteEntity?): Pokemon {
+            if (data == null) return Pokemon()
+
+            val pokemon = Pokemon(
+                id = data.globalId,
+                name = data.name,
+                image = data.image,
+                about = data.about,
+                height = data.height,
+                weight = data.weight
+            )
+
+            if (data.listStat.isNullOrEmpty()) return pokemon
+
+            val listStat = arrayListOf<Stat>()
+            data.listStat.forEach {
+                listStat.add(
+                    Stat(
+                        value = it.value,
+                        name = it.name
+                    )
+                )
+            }
+            pokemon.listStat = listStat
+
+            return pokemon
         }
 
     }
