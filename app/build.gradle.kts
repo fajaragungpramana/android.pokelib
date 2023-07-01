@@ -59,8 +59,8 @@ android {
 
 dependencies {
 
-    implementation(project(Module.LIBRARY_CORE))
-    implementation(project(Module.LIBRARY_WIDGET))
+    api(project(Module.LIBRARY_CORE))
+    api(project(Module.LIBRARY_WIDGET))
 
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
@@ -69,7 +69,6 @@ dependencies {
 
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)
-    implementation(Dependencies.Google.ACCOMPANIST_SWIPEREFRESH)
 
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation(Dependencies.AndroidTest.JUNIT)

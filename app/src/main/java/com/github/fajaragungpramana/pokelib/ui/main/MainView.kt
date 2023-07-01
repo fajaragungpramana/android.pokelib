@@ -1,5 +1,6 @@
 package com.github.fajaragungpramana.pokelib.ui.main
 
+import android.content.Intent
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -38,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -115,8 +117,15 @@ object MainView {
                 value = searchFieldValue
             )
 
+            val context = LocalContext.current
             IconButton(
-                onClick = {}
+                onClick = {
+                    val intent = Intent().setClassName(
+                        context,
+                        RouteView.Favorite.route
+                    )
+                    context.startActivity(intent)
+                }
             ) {
                 AsyncImage(
                     modifier = Modifier
