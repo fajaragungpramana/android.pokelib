@@ -48,4 +48,14 @@ class PokemonFavoriteRepositoryImpl @Inject constructor(
             })
         }
 
+    override suspend fun getListPokemonFavorite(): Flow<AppResult<List<PokemonFavoriteEntity>>> =
+        flow {
+            emit(connection {
+                val listPokemonEntity = mPokemonFavoriteDao.getListPokemonFavorite()
+                    ?: return@connection AppResult.OnFailure(1)
+
+                return@connection AppResult.OnSuccess(listPokemonEntity)
+            })
+        }
+
 }

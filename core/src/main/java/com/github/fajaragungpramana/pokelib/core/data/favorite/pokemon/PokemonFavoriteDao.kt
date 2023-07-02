@@ -18,4 +18,7 @@ interface PokemonFavoriteDao {
     @Query("DELETE FROM PokemonFavoriteEntity WHERE globalId = :globalId")
     fun deletePokemonFavorite(globalId: Long?)
 
+    @Query("SELECT * FROM PokemonFavoriteEntity")
+    fun getListPokemonFavorite(): List<PokemonFavoriteEntity>?
+
 }

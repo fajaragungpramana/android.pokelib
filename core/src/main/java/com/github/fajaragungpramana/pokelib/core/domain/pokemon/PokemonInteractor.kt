@@ -34,4 +34,8 @@ class PokemonInteractor @Inject constructor(
         mPokemonFavoriteRepository.deletePokemonFavorite(globalId)
             .resultMapper { Pokemon.mapToObject(it) }
 
+    override suspend fun getListFavoritePokemon(): Flow<AppResult<List<Pokemon>>> =
+        mPokemonFavoriteRepository.getListPokemonFavorite()
+            .resultMapper { Pokemon.mapFavoriteToList(it) }
+
 }

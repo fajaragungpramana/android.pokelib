@@ -51,6 +51,42 @@ data class Pokemon(
             return listPokemon
         }
 
+        fun mapFavoriteToList(data: List<PokemonFavoriteEntity>?): List<Pokemon> {
+            if (data.isNullOrEmpty()) return emptyList()
+
+            val listPokemon = arrayListOf<Pokemon>()
+            for (i in data.indices) {
+                val pokemonFavoriteEntity = data[i]
+
+                val pokemon = Pokemon(
+                    id = pokemonFavoriteEntity.globalId,
+                    name = pokemonFavoriteEntity.name,
+                    image = pokemonFavoriteEntity.image,
+                    height = pokemonFavoriteEntity.height,
+                    weight = pokemonFavoriteEntity.weight
+                )
+
+                if (pokemonFavoriteEntity.listStat.isNullOrEmpty())
+                    listPokemon.add(pokemon)
+                else {
+                    val listStat = arrayListOf<Stat>()
+                    for (j in pokemonFavoriteEntity.listStat.indices) {
+                        val statFavoriteEntity = pokemonFavoriteEntity.listStat[j]
+                        listStat.add(
+                            Stat(
+                                value = statFavoriteEntity.value,
+                                name = statFavoriteEntity.name
+                            )
+                        )
+                    }
+                    pokemon.listStat = listStat
+                    listPokemon.add(pokemon)
+                }
+            }
+
+            return listPokemon
+        }
+
         fun mapToObject(data: PokemonFavoriteEntity?): Pokemon {
             if (data == null) return Pokemon()
 

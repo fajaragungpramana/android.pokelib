@@ -9,4 +9,5 @@ interface PokemonFavoriteRepository {
     suspend fun setPokemonFavorite(request: PokemonFavoriteRequest): Flow<AppResult<PokemonFavoriteEntity>>
     suspend fun getPokemonFavorite(globalId: Long?): Flow<AppResult<PokemonFavoriteEntity>>
     suspend fun deletePokemonFavorite(globalId: Long?): Flow<AppResult<PokemonFavoriteEntity>>
+    suspend fun getListPokemonFavorite(): Flow<AppResult<List<PokemonFavoriteEntity>>>
 }
