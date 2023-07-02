@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonFavoriteRepository {
     suspend fun setPokemonFavorite(request: PokemonFavoriteRequest): Flow<AppResult<PokemonFavoriteEntity>>
+    suspend fun getPokemonFavorite(globalId: Long?): Flow<AppResult<PokemonFavoriteEntity>>
 }

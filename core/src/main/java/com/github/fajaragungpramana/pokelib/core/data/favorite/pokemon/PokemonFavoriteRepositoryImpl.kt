@@ -25,4 +25,15 @@ class PokemonFavoriteRepositoryImpl @Inject constructor(
             })
         }.resultFlow()
 
+    override suspend fun getPokemonFavorite(globalId: Long?): Flow<AppResult<PokemonFavoriteEntity>> =
+        flow {
+            emit(connection {
+                val pokemonFavorite = mPokemonFavoriteDao.getPokemonFavorite(
+                    globalId = globalId
+                ) ?: return@connection AppResult.OnFailure(code = 1)
+
+                return@connection AppResult.OnSuccess(data = pokemonFavorite)
+            })
+        }
+
 }
