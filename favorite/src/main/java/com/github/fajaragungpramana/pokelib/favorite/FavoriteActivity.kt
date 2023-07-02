@@ -8,6 +8,11 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.github.fajaragungpramana.pokelib.favorite.ui.favorite.FavoriteView
+import com.github.fajaragungpramana.pokelib.ui.RouteView
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
 
 class FavoriteActivity : ComponentActivity() {
@@ -16,7 +21,6 @@ class FavoriteActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-
             PokeLibTheme(dynamicColor = false) {
 
                 Surface(
@@ -26,10 +30,19 @@ class FavoriteActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = RouteView.Favorite.route
+                    ) {
+                        composable(RouteView.Favorite.route) {
+                            FavoriteView.ContentView()
+                        }
+                    }
+
                 }
 
             }
-
         }
 
     }

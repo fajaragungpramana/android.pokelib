@@ -43,6 +43,7 @@ import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
 import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Stat
 import com.github.fajaragungpramana.pokelib.extension.asDigit
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
+import com.github.fajaragungpramana.pokelib.widget.style.Black80
 
 object DetailView {
 
@@ -67,6 +68,7 @@ object DetailView {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
+                            color = Black80,
                             text = pokemon?.name.orEmpty().replaceFirstChar(Char::titlecase),
                             fontWeight = FontWeight.Bold
                         )

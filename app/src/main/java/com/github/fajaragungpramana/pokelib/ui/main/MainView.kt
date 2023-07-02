@@ -122,7 +122,7 @@ object MainView {
                 onClick = {
                     val intent = Intent().setClassName(
                         context,
-                        RouteView.Favorite.route
+                        RouteView.FavoriteModule.route
                     )
                     context.startActivity(intent)
                 }
