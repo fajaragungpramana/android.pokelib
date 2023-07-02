@@ -19,6 +19,9 @@ object Dependencies {
         const val COMPOSE_UI_GRAPHIC = "androidx.compose.ui:ui-graphics"
         const val COMPOSE_UI_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview"
         const val COMPOSE_MATERIAL = "androidx.compose.material3:material3"
+
+        const val ROOM = "androidx.room:room-runtime:${Version.ROOM}"
+        const val ROOM_COMPILER = "androidx.room:room-compiler:${Version.ROOM}"
     }
 
     object Debug {
@@ -29,8 +32,6 @@ object Dependencies {
     object Google {
         const val HILT = "com.google.dagger:hilt-android:${Version.HILT}"
         const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Version.HILT}"
-
-        const val ACCOMPANIST_SWIPEREFRESH = "com.google.accompanist:accompanist-swiperefresh:0.30.1"
     }
 
     object SquareUp {
