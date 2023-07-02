@@ -1,9 +1,11 @@
 package com.github.fajaragungpramana.pokelib.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.request.PokemonFavoriteRequest
 import com.github.fajaragungpramana.pokelib.core.domain.pokemon.PokemonUseCase
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
 import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.PokemonSpecies
 import com.github.fajaragungpramana.pokelib.core.extension.onCompleteListener
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +24,10 @@ class DetailViewModel @Inject constructor(private val mPokemonUseCase: PokemonUs
     private val _stateSuccessPokemonSpecies = MutableStateFlow(PokemonSpecies())
     val stateSuccessPokemonSpecies: StateFlow<PokemonSpecies>
         get() = _stateSuccessPokemonSpecies.asStateFlow()
+
+    private val _stateSuccessPokemon = MutableStateFlow(Pokemon())
+    val stateSuccessPokemon: StateFlow<Pokemon>
+        get() = _stateSuccessPokemon.asStateFlow()
 
     override fun getPokemonSpecies(id: Long?): Job = viewModelScope.launch {
         mPokemonUseCase.getPokemonSpecies(id).collectLatest { result ->
@@ -47,6 +53,24 @@ class DetailViewModel @Inject constructor(private val mPokemonUseCase: PokemonUs
                 onSuccess = {
                 },
                 onFailure = {
+                },
+                onError = {
+                }
+            )
+        }
+    }
+
+    override fun getPokemonFavorite(globalId: Long?): Job = viewModelScope.launch {
+        mPokemonUseCase.getFavoritePokemon(globalId).collectLatest { result ->
+            result.onCompleteListener(
+                onLoading = {
+                },
+                onSuccess = {
+                    Log.d("FFFF", "SUCCESS : $it")
+                    _stateSuccessPokemon.value = it ?: Pokemon()
+                },
+                onFailure = {
+                    Log.d("FFFF", "Failure : $it")
                 },
                 onError = {
                 }

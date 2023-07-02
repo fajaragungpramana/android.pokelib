@@ -55,6 +55,10 @@ object DetailView {
         }
 
         val pokemonSpecies = viewModel.stateSuccessPokemonSpecies.collectAsState()
+        val pokemonFavorite = viewModel.stateSuccessPokemon.collectAsState()
+        LaunchedEffect(Unit) {
+            viewModel.getPokemonFavorite(pokemon?.id)
+        }
 
         Scaffold(
             topBar = {
@@ -75,33 +79,35 @@ object DetailView {
                     actions = {
                         IconButton(onClick = {
 
-                            val listStatRequest = arrayListOf<StatFavoriteRequest>()
-                            pokemon?.listStat?.forEach {
-                                listStatRequest.add(
-                                    StatFavoriteRequest(
-                                        value = it.value,
-                                        name = it.name
+                            if (pokemonFavorite.value.name == null) {
+                                val listStatRequest = arrayListOf<StatFavoriteRequest>()
+                                pokemon?.listStat?.forEach {
+                                    listStatRequest.add(
+                                        StatFavoriteRequest(
+                                            value = it.value,
+                                            name = it.name
+                                        )
+                                    )
+                                }
+                                viewModel.setPokemonFavorite(
+                                    PokemonFavoriteRequest(
+                                        globalId = pokemon?.id,
+                                        name = pokemon?.name,
+                                        image = pokemon?.image,
+                                        about = pokemon?.about,
+                                        height = pokemon?.height,
+                                        weight = pokemon?.weight,
+                                        listStat = listStatRequest
                                     )
                                 )
                             }
-                            viewModel.setPokemonFavorite(
-                                PokemonFavoriteRequest(
-                                    globalId = pokemon?.id,
-                                    name = pokemon?.name,
-                                    image = pokemon?.image,
-                                    about = pokemon?.about,
-                                    height = pokemon?.height,
-                                    weight = pokemon?.weight,
-                                    listStat = listStatRequest
-                                )
-                            )
 
                         }) {
                             AsyncImage(
                                 modifier = Modifier
                                     .width(24.dp)
                                     .height(24.dp),
-                                model = R.drawable.ic_favorite,
+                                model = if (pokemonFavorite.value.name == null) R.drawable.ic_favorite else R.drawable.ic_favorited,
                                 contentDescription = null
                             )
                         }

@@ -6,4 +6,5 @@ import kotlinx.coroutines.Job
 interface DetailEvent {
     fun getPokemonSpecies(id: Long?): Job
     fun setPokemonFavorite(request: PokemonFavoriteRequest): Job
+    fun getPokemonFavorite(globalId: Long?): Job
 }
