@@ -2,6 +2,7 @@ plugins {
     id(Plugin.DYNAMIC_FEATURE)
     id(Plugin.KOTLIN_ANDROID)
     id(Plugin.KOTLIN_KAPT)
+    id(Plugin.HILT)
 }
 android {
     namespace = "com.github.fajaragungpramana.pokelib.favorite"
@@ -40,5 +41,8 @@ android {
 dependencies {
 
     implementation(project(Module.APP))
+
+    implementation(Dependencies.Google.HILT)
+    kapt(Dependencies.Google.HILT_COMPILER)
 
 }
