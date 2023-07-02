@@ -1,4 +1,4 @@
-package com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model
+package com.github.fajaragungpramana.pokelib.core.domain.pokemon.model
 
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.response.PokemonSpeciesEntity
 

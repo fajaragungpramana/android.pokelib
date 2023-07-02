@@ -59,17 +59,16 @@ android {
 
 dependencies {
 
-    implementation(project(Module.LIBRARY_CORE))
-    implementation(project(Module.LIBRARY_WIDGET))
+    api(project(Module.LIBRARY_CORE))
+    api(project(Module.LIBRARY_WIDGET))
 
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
     implementation(Dependencies.AndroidX.COMPOSE_HILT)
-    implementation(Dependencies.AndroidX.NAVIGATION_COMPOSE)
+    api(Dependencies.AndroidX.NAVIGATION_COMPOSE)
 
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)
-    implementation(Dependencies.Google.ACCOMPANIST_SWIPEREFRESH)
 
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation(Dependencies.AndroidTest.JUNIT)

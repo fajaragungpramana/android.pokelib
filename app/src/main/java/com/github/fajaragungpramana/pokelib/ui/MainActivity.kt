@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
 import com.github.fajaragungpramana.pokelib.ui.detail.DetailView
 import com.github.fajaragungpramana.pokelib.ui.main.MainView
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme

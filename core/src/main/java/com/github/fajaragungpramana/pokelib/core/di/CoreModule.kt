@@ -1,6 +1,8 @@
 package com.github.fajaragungpramana.pokelib.core.di
 
+import androidx.room.Room
 import com.github.fajaragungpramana.pokelib.core.BuildConfig
+import com.github.fajaragungpramana.pokelib.core.data.favorite.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,5 +34,9 @@ object CoreModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
+
+    @Provides
+    fun provideAppDatabase(): AppDatabase =
+        Room.databaseBuilder(Core.getContext(), AppDatabase::class.java, "pokelib_database").build()
 
 }
