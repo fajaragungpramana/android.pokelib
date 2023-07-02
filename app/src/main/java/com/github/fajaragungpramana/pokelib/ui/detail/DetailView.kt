@@ -100,7 +100,8 @@ object DetailView {
                                         listStat = listStatRequest
                                     )
                                 )
-                            }
+                            } else
+                                viewModel.deletePokemonFavorite(pokemon?.id)
 
                         }) {
                             AsyncImage(

@@ -1,6 +1,5 @@
 package com.github.fajaragungpramana.pokelib.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.request.PokemonFavoriteRequest
@@ -51,6 +50,7 @@ class DetailViewModel @Inject constructor(private val mPokemonUseCase: PokemonUs
                 onLoading = {
                 },
                 onSuccess = {
+                    _stateSuccessPokemon.value = it ?: Pokemon()
                 },
                 onFailure = {
                 },
@@ -66,11 +66,25 @@ class DetailViewModel @Inject constructor(private val mPokemonUseCase: PokemonUs
                 onLoading = {
                 },
                 onSuccess = {
-                    Log.d("FFFF", "SUCCESS : $it")
                     _stateSuccessPokemon.value = it ?: Pokemon()
                 },
                 onFailure = {
-                    Log.d("FFFF", "Failure : $it")
+                },
+                onError = {
+                }
+            )
+        }
+    }
+
+    override fun deletePokemonFavorite(globalId: Long?): Job = viewModelScope.launch {
+        mPokemonUseCase.deleteFavoritePokemon(globalId).collectLatest { result ->
+            result.onCompleteListener(
+                onLoading = {
+                },
+                onSuccess = {
+                    _stateSuccessPokemon.value = it ?: Pokemon()
+                },
+                onFailure = {
                 },
                 onError = {
                 }
