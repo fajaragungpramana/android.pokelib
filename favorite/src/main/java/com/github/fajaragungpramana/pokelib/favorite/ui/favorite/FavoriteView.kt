@@ -23,6 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.github.fajaragungpramana.pokelib.R
 import com.github.fajaragungpramana.pokelib.widget.style.Black80
@@ -31,7 +33,8 @@ object FavoriteView {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ContentView() {
+    fun ContentView(factory: ViewModelProvider.Factory) {
+        val viewModel: FavoriteViewModel = viewModel(factory = factory)
 
         Scaffold(
             topBar = {
