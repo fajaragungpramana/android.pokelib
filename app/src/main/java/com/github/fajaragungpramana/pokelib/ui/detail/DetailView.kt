@@ -37,10 +37,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.github.fajaragungpramana.pokelib.R
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Pokemon
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.model.Stat
+import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.request.PokemonFavoriteRequest
+import com.github.fajaragungpramana.pokelib.core.data.favorite.pokemon.request.StatFavoriteRequest
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Pokemon
+import com.github.fajaragungpramana.pokelib.core.domain.pokemon.model.Stat
 import com.github.fajaragungpramana.pokelib.extension.asDigit
 import com.github.fajaragungpramana.pokelib.ui.theme.PokeLibTheme
+import com.github.fajaragungpramana.pokelib.widget.style.Black80
 
 object DetailView {
 
@@ -53,6 +56,10 @@ object DetailView {
         }
 
         val pokemonSpecies = viewModel.stateSuccessPokemonSpecies.collectAsState()
+        val pokemonFavorite = viewModel.stateSuccessPokemon.collectAsState()
+        LaunchedEffect(Unit) {
+            viewModel.getPokemonFavorite(pokemon?.id)
+        }
 
         Scaffold(
             topBar = {
@@ -61,6 +68,7 @@ object DetailView {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
+                            color = Black80,
                             text = pokemon?.name.orEmpty().replaceFirstChar(Char::titlecase),
                             fontWeight = FontWeight.Bold
                         )
@@ -71,12 +79,38 @@ object DetailView {
                         }
                     },
                     actions = {
-                        IconButton(onClick = { }) {
+                        IconButton(onClick = {
+
+                            if (pokemonFavorite.value.name == null) {
+                                val listStatRequest = arrayListOf<StatFavoriteRequest>()
+                                pokemon?.listStat?.forEach {
+                                    listStatRequest.add(
+                                        StatFavoriteRequest(
+                                            value = it.value,
+                                            name = it.name
+                                        )
+                                    )
+                                }
+                                viewModel.setPokemonFavorite(
+                                    PokemonFavoriteRequest(
+                                        globalId = pokemon?.id,
+                                        name = pokemon?.name,
+                                        image = pokemon?.image,
+                                        about = pokemon?.about,
+                                        height = pokemon?.height,
+                                        weight = pokemon?.weight,
+                                        listStat = listStatRequest
+                                    )
+                                )
+                            } else
+                                viewModel.deletePokemonFavorite(pokemon?.id)
+
+                        }) {
                             AsyncImage(
                                 modifier = Modifier
                                     .width(24.dp)
                                     .height(24.dp),
-                                model = R.drawable.ic_favorite,
+                                model = if (pokemonFavorite.value.name == null) R.drawable.ic_favorite else R.drawable.ic_favorited,
                                 contentDescription = null
                             )
                         }

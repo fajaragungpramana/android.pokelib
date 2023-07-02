@@ -3,8 +3,6 @@ package com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.di
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.PokemonRepository
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.PokemonRepositoryImpl
 import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.PokemonService
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.PokemonInteractor
-import com.github.fajaragungpramana.pokelib.core.data.remote.pokemon.domain.PokemonUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +20,5 @@ object PokemonModule {
     @Provides
     fun provideRepository(pokemonService: PokemonService): PokemonRepository =
         PokemonRepositoryImpl(pokemonService)
-
-    @Provides
-    fun provideInteractor(pokemonRepository: PokemonRepository): PokemonUseCase =
-        PokemonInteractor(pokemonRepository)
 
 }
