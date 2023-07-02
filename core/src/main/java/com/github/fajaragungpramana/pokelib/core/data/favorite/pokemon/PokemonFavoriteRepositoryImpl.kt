@@ -36,4 +36,16 @@ class PokemonFavoriteRepositoryImpl @Inject constructor(
             })
         }
 
+    override suspend fun deletePokemonFavorite(globalId: Long?): Flow<AppResult<PokemonFavoriteEntity>> =
+        flow {
+            emit(connection {
+                mPokemonFavoriteDao.deletePokemonFavorite(globalId)
+                mPokemonFavoriteDao.getPokemonFavorite(
+                    globalId = globalId
+                ) ?: return@connection AppResult.OnSuccess(null)
+
+                return@connection AppResult.OnFailure(1)
+            })
+        }
+
 }

@@ -12,4 +12,5 @@ interface PokemonUseCase {
     suspend fun getPokemonSpecies(id: Long?): Flow<AppResult<PokemonSpecies>>
     suspend fun setFavoritePokemon(request: PokemonFavoriteRequest): Flow<AppResult<Pokemon>>
     suspend fun getFavoritePokemon(globalId: Long?): Flow<AppResult<Pokemon>>
+    suspend fun deleteFavoritePokemon(globalId: Long?): Flow<AppResult<Pokemon>>
 }
