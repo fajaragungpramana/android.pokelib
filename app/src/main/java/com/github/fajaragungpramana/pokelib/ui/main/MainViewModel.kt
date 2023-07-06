@@ -37,10 +37,8 @@ class MainViewModel @Inject constructor(private val mPokemonUseCase: PokemonUseC
                     _stateSuccessListPokemon.value = it ?: emptyList()
                 },
                 onFailure = {
-
                 },
                 onError = {
-
                 }
             )
         }
