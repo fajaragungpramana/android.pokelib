@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 17
+          distribution: 'temurin'
+          cache: gradle
 
       - run: echo "The workflow is now ready to test your code."
       - name: Grant permission for gradlew
@@ -28,7 +30,7 @@ jobs:
 
       - run: echo "Run tests application"
       - name: Run Tests
-        run: ./gradlew test
+        run: ./gradlew lint test
       - run: echo "Test report=${{ job.status }}."
 
       - run: echo "Run build app-debug.apk ..."
