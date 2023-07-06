@@ -79,3 +79,7 @@ dependencies {
     debugImplementation(Dependencies.Debug.COMPOSE_UI_TEST_MANIFEST)
 
 }
+
+kapt {
+    correctErrorTypes = true
+}
