@@ -46,3 +46,7 @@ dependencies {
     kapt(Dependencies.Google.HILT_COMPILER)
 
 }
+
+kapt {
+    correctErrorTypes = true
+}

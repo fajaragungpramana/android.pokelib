@@ -53,3 +53,7 @@ dependencies {
     api(Dependencies.Widget.COIL_COMPOSE)
 
 }
+
+kapt {
+    correctErrorTypes = true
+}
