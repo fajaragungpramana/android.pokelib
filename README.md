@@ -48,7 +48,24 @@ Menerapkan Reactive Programming
 - Boleh menggunakan Rx/Flow (pilih salah satu). 
 - Menerapkan dengan tepat untuk mengambil data dari network dan database.
 
-### Preview
+## Submission Two Requirement
+Menerapkan Continuous Integration.
+- Tool yang digunakan bebas (CircleCI, Github Action, TravisCI, dll).
+- Melakukan test dan build APK dengan sukses (pass) pada proses terakhirnya. Lampirkan link project CI pada kolom Catatan ketika akan mengirimkan tugas.
+
+Memiliki performa yang baik
+- Menerapkan Leak Canary  dan tidak ada memory leaks saat dianalisa.
+- Tidak ada issue terkait performance saat dilakukan Inspect Code.
+
+Menerapkan Security
+- Menerapkan obfuscation dengan ProGuard.
+- Menerapkan encryption pada database.
+- Menerapkan certificate pinning untuk koneksi ke server.
+- Tuliskan teknik dan lokasi class pada kolom Catatan untuk mempercepat kami melakukan pengecekan.
+
+Mempertahankan syarat yang ada pada submission sebelumnya.
+
+## Preview
 <img src="https://github.com/fajaragungpramana/assets/blob/master/AndroidPokeLib/1688268974864.jpg" width="393" height="852">
 <img src="https://github.com/fajaragungpramana/assets/blob/master/AndroidPokeLib/1688268974853.jpg" width="393" height="852">
 <img src="https://github.com/fajaragungpramana/assets/blob/master/AndroidPokeLib/1688268974861.jpg" width="393" height="852">
