@@ -30,7 +30,7 @@ jobs:
 
       - run: echo "Run tests application"
       - name: Run Tests
-        run: ./gradlew test
+        run: ./gradlew lint test
       - run: echo "Test report=${{ job.status }}."
 
       - run: echo "Run build app-debug.apk ..."

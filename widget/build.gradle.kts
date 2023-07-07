@@ -44,10 +44,10 @@ dependencies {
 
     api(Dependencies.AndroidX.ACTIVITY_COMPOSE)
 
-    implementation(platform(Dependencies.AndroidX.COMPOSE_BOM))
-    implementation(Dependencies.AndroidX.COMPOSE_UI)
-    implementation(Dependencies.AndroidX.COMPOSE_UI_GRAPHIC)
-    implementation(Dependencies.AndroidX.COMPOSE_UI_TOOLING_PREVIEW)
+    api(platform(Dependencies.AndroidX.COMPOSE_BOM))
+    api(Dependencies.AndroidX.COMPOSE_UI)
+    api(Dependencies.AndroidX.COMPOSE_UI_GRAPHIC)
+    api(Dependencies.AndroidX.COMPOSE_UI_TOOLING_PREVIEW)
     api(Dependencies.AndroidX.COMPOSE_MATERIAL)
 
     api(Dependencies.Widget.COIL_COMPOSE)
