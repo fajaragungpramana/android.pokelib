@@ -27,6 +27,7 @@ object Dependencies {
     object Debug {
         const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling"
         const val COMPOSE_UI_TEST_MANIFEST = "androidx.compose.ui:ui-test-manifest"
+        const val LEAKCANARY_ANDROID = "com.squareup.leakcanary:leakcanary-android:2.12"
     }
 
     object Google {

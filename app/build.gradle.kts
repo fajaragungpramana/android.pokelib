@@ -77,6 +77,7 @@ dependencies {
     androidTestImplementation(Dependencies.AndroidTest.COMPOSE_UI_TEST_JUNIT)
     debugImplementation(Dependencies.Debug.COMPOSE_UI_TOOLING)
     debugImplementation(Dependencies.Debug.COMPOSE_UI_TEST_MANIFEST)
+    debugImplementation(Dependencies.Debug.LEAKCANARY_ANDROID)
 
 }
 
