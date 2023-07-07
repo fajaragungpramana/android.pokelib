@@ -22,6 +22,8 @@ object Dependencies {
 
         const val ROOM = "androidx.room:room-runtime:${Version.ROOM}"
         const val ROOM_COMPILER = "androidx.room:room-compiler:${Version.ROOM}"
+
+        const val SQLITE_KTX = "androidx.sqlite:sqlite-ktx:2.3.1"
     }
 
     object Debug {
@@ -47,6 +49,10 @@ object Dependencies {
 
     object Widget {
         const val COIL_COMPOSE = "io.coil-kt:coil-compose:2.4.0"
+    }
+
+    object Zetetic {
+        const val ANDROID_DATABASE_SQLCIPHER = "net.zetetic:android-database-sqlcipher:4.5.4"
     }
 
 }
