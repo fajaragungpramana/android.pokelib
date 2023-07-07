@@ -7,6 +7,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -36,7 +38,13 @@ object CoreModule {
             .build()
 
     @Provides
-    fun provideAppDatabase(): AppDatabase =
-        Room.databaseBuilder(Core.getContext(), AppDatabase::class.java, "pokelib_database").build()
+    fun provideAppDatabase(): AppDatabase {
+        val passphrase = SQLiteDatabase.getBytes(BuildConfig.SQL_KEY.toCharArray())
+        val factory = SupportFactory(passphrase)
+
+        return Room.databaseBuilder(
+            Core.getContext(), AppDatabase::class.java, BuildConfig.SQL_DATABASE
+        ).fallbackToDestructiveMigration().openHelperFactory(factory).build()
+    }
 
 }

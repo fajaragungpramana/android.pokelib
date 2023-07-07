@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -28,7 +28,15 @@ android {
         }
 
         debug {
+            isMinifyEnabled = true
+            proguardFiles(
+                @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
             buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
+            buildConfigField("String", "SQL_DATABASE", "\"Pokelib.db\"")
+            buildConfigField("String", "SQL_KEY", "\"com.github.fajaragungpramana\"")
         }
     }
     @Suppress("UnstableApiUsage")
@@ -46,6 +54,8 @@ android {
 
 dependencies {
 
+    implementation(Dependencies.AndroidX.SQLITE_KTX)
+
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)
 
@@ -55,6 +65,8 @@ dependencies {
 
     implementation(Dependencies.AndroidX.ROOM)
     kapt(Dependencies.AndroidX.ROOM_COMPILER)
+
+    implementation(Dependencies.Zetetic.ANDROID_DATABASE_SQLCIPHER)
 
 }
 
