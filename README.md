@@ -1,4 +1,5 @@
 # Android PokeLib
+[![Android CI Debug](https://github.com/fajaragungpramana/android.pokelib/actions/workflows/app_build_debug.yml/badge.svg)](https://github.com/fajaragungpramana/android.pokelib/actions/workflows/app_build_debug.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 </br>
 Dicoding Submission for Menjadi Android Developer Expert Class.
