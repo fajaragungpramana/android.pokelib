@@ -9,18 +9,32 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
 object CoreModule {
 
     @Provides
-    fun provideClient(): OkHttpClient {
+    fun provideCertificate(): CertificatePinner =
+        CertificatePinner.Builder()
+            .add(BuildConfig.BASE_HOSTNAME, "sha256/9Yo5DIhM434OpBbqe2YOTJEt4+cTVf1OLs4mqhipC4o=")
+            .add(BuildConfig.BASE_HOSTNAME, "sha256/81Wf12bcLlFHQAfJluxnzZ6Frg+oJ9PWY/Wrwur8viQ=")
+            .add(BuildConfig.BASE_HOSTNAME, "sha256/hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc=")
+            .build()
+
+    @Provides
+    fun provideClient(certificate: CertificatePinner): OkHttpClient {
         val clientBuilder = OkHttpClient.Builder()
+        clientBuilder.connectTimeout(30, TimeUnit.SECONDS)
+        clientBuilder.readTimeout(30, TimeUnit.SECONDS)
+        clientBuilder.certificatePinner(certificate)
+
         if (BuildConfig.DEBUG)
             clientBuilder.addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY

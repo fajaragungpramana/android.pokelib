@@ -35,6 +35,7 @@ android {
             )
 
             buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
+            buildConfigField("String", "BASE_HOSTNAME", "\"pokeapi.co\"")
             buildConfigField("String", "SQL_DATABASE", "\"Pokelib.db\"")
             buildConfigField("String", "SQL_KEY", "\"com.github.fajaragungpramana\"")
         }
